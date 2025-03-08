@@ -1,0 +1,26 @@
+#book-list {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 books per row */
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .book-item {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .book-item img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .original-price {
+    text-decoration: line-through;
+  }
+  
+  .discounted-price {
+    font-weight: bold;
+    color: green; /* Make the discounted price green */
+  }
