@@ -1,0 +1,59 @@
+{
+  "books": [
+    {
+      "name": "Alice in Wonderland",
+      "damage-level": 2,
+      "author": "Lewis Carroll",
+      "type": "Corner",
+      "discount": 0.1,
+      "price": 15.0,
+      "img": "/static/alice-in-wonderland.webp",
+      "publisher": "Scribner",
+      "sold": false
+    },
+    {
+      "name": "Heartless",
+      "damage-level": 3,
+      "author": "Marissa Meyer",
+      "type": "Corner",
+      "discount": 0.1,
+      "price": 10.0,
+      "img": "/static/heartless.webp",
+      "publisher": "Feiwel & Friends",
+      "sold": false
+    },
+    {
+      "name": "Scarlet",
+      "damage-level": 1,
+      "author": "Marissa Meyer",
+      "type": "Warped Pages",
+      "discount": 0.1,
+      "price": 19.0,
+      "img": "/static/scarlet.webp",
+      "publisher": "Penguin Books",
+      "sold": false
+    },
+    {
+      "name": "The Sentencer",
+      "damage-level": 4,
+      "author": "Louis Erdrich",
+      "type": "Warped Pages",
+      "discount": 0.14,
+      "price": 15.0,
+      "img": "/static/the-sentence.webp",
+      "publisher": "Penguin Books",
+      "sold": false
+    },
+    {
+      "name": "Trajelon",
+      "damage-level": 2,
+      "author": "Alyssa Marie Bethancourt",
+      "type": "Corner Damage",
+      "discount": 0.1,
+      "price": 18.0,
+      "img": "/static/trajelon.jpg",
+      "publisher": "Scholastic",
+      "sold": false
+    }
+  ]
+}
