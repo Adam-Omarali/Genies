@@ -23,20 +23,22 @@ app.add_middleware(
 )
 
 # Mount the static directory
-app.mount("/static", StaticFiles(directory="static"), name="static")
+app.mount("/", StaticFiles(directory="../frontend/out", html=True), name="frontend")
 
-@app.get("/")
+app.mount("/api/static", StaticFiles(directory="static"), name="static")
+
+@app.get("/api")
 async def root():
     return {"message": "Hello World"}
 
-@app.get("/books")
+@app.get("/api/books")
 async def get_books():
     with open('books.json', 'r') as f:
         data = json.load(f)
     return data
 
 
-@app.post("/upload-image")
+@app.post("/api/upload-image")
 async def upload_image(
     publisher: str = Form(...),
     original_price: float = Form(...),
@@ -58,7 +60,7 @@ async def upload_image(
     except Exception as e:
         return JSONResponse(content={"error": str(e), "status": "failed"})
 
-@app.post("/routes")
+@app.post("/api/routes")
 async def get_routes(mode: str = Form(...), num_trucks: int = Form(...)):
     print(f"Generating routes for {mode} with {num_trucks} trucks")
     image_bytes = logistics.plot_routes_and_save(mode, num_trucks)
@@ -72,7 +74,7 @@ async def get_routes(mode: str = Form(...), num_trucks: int = Form(...)):
         }
     )
 
-@app.get("/delete")
+@app.get("/api/delete")
 async def delete_trajelon():
     try:
         # Read the current books
