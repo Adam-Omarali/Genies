@@ -72,3 +72,34 @@ async def get_routes(mode: str = Form(...), num_trucks: int = Form(...)):
         }
     )
 
+@app.get("/delete")
+async def delete_trajelon():
+    try:
+        # Read the current books
+        with open('books.json', 'r') as f:
+            books = json.load(f)
+        
+        # Find and remove Trajelon entry, saving the image filename
+        trajelon_entry = None
+        for index, book in enumerate(books['books']):
+            if book.get('name', '').lower() == 'trajelon':
+                trajelon_entry = book
+                books['books'].pop(index)
+                break
+        
+        if not trajelon_entry:
+            return JSONResponse(content={"error": "Trajelon entry not found", "status": "failed"})
+            
+        # Save updated books.json
+        with open('books.json', 'w') as f:
+            json.dump(books, f, indent=4)
+            
+        # Delete the image file if it exists
+        image_path = os.path.join("static", trajelon_entry.get('img', ''))
+        if os.path.exists(image_path):
+            os.remove(image_path)
+            
+        return JSONResponse(content={"message": "Trajelon entry and image deleted successfully", "status": "success"})
+    except Exception as e:
+        return JSONResponse(content={"error": str(e), "status": "failed"})
+
