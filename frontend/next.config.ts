@@ -1,14 +1,13 @@
 import type { NextConfig } from "next";
 
-const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
 
 const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
         protocol: 'http',
-        hostname: backendUrl?.split("//")[1].split(":")[0] ?? 'localhost',
-        port: backendUrl?.split(':')[2].split('/')[0] ?? '8000',
+        hostname: process.env.NEXT_PUBLIC_BACKEND_URL?.split("//")[1].split(":")[0] ?? 'localhost',
+        port: process.env.NEXT_PUBLIC_BACKEND_URL?.split(':')[2].split('/')[0] ?? '8000',
         pathname: '/static/**',
         search: '',
       },
