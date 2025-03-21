@@ -17,23 +17,13 @@ interface Book {
 }
 
 interface BookPageProps {
-  params: {
+  params: Promise<{
     name: string;
-  };
-}
-
-// This function tells Next.js which dynamic paths to pre-render
-export async function generateStaticParams() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/books`);
-  const data = await res.json();
-
-  return data.books.map((book: Book) => ({
-    name: encodeURIComponent(book.name),
-  }));
+  }>;
 }
 
 export default function BookPage({ params }: BookPageProps) {
-  const { name } = params;
+  const { name } = use(params);
   const [book, setBook] = useState<Book | null>(null);
   const [quantity, setQuantity] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
