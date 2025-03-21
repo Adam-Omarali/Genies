@@ -18,9 +18,7 @@ const nextConfig: NextConfig = {
         search: '',
       },
     ],
-  },
-  output: 'export',
-  /* config options here */
+  }  /* config options here */
 };
 
 export default nextConfig;

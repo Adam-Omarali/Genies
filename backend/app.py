@@ -23,7 +23,7 @@ app.add_middleware(
 )
 
 # Mount the static directory
-app.mount("/", StaticFiles(directory="../frontend/out", html=True), name="frontend")
+# app.mount("/", StaticFiles(directory="../frontend/out", html=True), name="frontend")
 
 app.mount("/api/static", StaticFiles(directory="static"), name="static")
 
