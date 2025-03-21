@@ -1,0 +1,45 @@
+📦 Delivery Summary Report
+====================================
+
+🚚 Route #1 (Starting at Indigo Eaton Centre):
+Total Distance: 0.141 units
+Stops:
+  1. Book City (Bloor West)
+  2. Novel Spot Bookshop
+
+🚚 Route #2 (Starting at Indigo Eaton Centre):
+Total Distance: 0.123 units
+Stops:
+  1. Queen Books
+  2. Book City (Danforth)
+  3. The Great Escape Book Store
+  4. Book City (Beaches)
+
+🚚 Route #3 (Starting at Indigo Eaton Centre):
+Total Distance: 0.215 units
+Stops:
+  1. Indigo Eaton Centre
+  2. Ben McNally Books
+  3. Glad Day Bookshop
+  4. Bakka-Phoenix Books
+  5. Eliot's Bookshop
+  6. BMV Books
+  7. Seekers Books
+  8. Sellers & Newel Second-Hand Books
+  9. Type Books
+  10. Swipe Design | Books + Objects
+  11. Press Books Coffee Vinyl  ⚠️  (+$2.21 surcharge for detour)
+  12. The Monkey's Paw
+  13. Re:Reading
+  14. The Book Exchange  ⚠️  (+$2.31 surcharge for detour)
+  15. Mabel's Fables
+💰 Total Surcharge: $4.52
+
+🚚 Route #4 (Starting at Indigo Eaton Centre):
+Total Distance: 0.198 units
+Stops:
+  1. Book Ends South
+  2. The Reading Room Cafe
+
+====================================
+End of Report.
