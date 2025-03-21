@@ -10,12 +10,33 @@ function Spinner() {
   );
 }
 
+interface RouteStop {
+  stop_number: number;
+  name: string;
+  surcharge: number;
+  has_detour: boolean;
+}
+
+interface Route {
+  route_number: number;
+  starting_point: string;
+  total_distance: number;
+  stops: RouteStop[];
+  surcharge_total: number;
+}
+
+interface RouteReport {
+  title: string;
+  routes: Route[];
+}
+
 export default function OrdersPage() {
   const [mode, setMode] = useState<"known" | "unknown">("unknown");
   const [numTrucks, setNumTrucks] = useState("3");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [routesImage, setRoutesImage] = useState<string | null>(null);
+  const [summary, setSummary] = useState<RouteReport | null>(null);
   const minTrucks = 1;
   const maxTrucks = 6;
 
@@ -31,6 +52,8 @@ export default function OrdersPage() {
       formData.append("mode", mode === "known" ? "supervised" : "unsupervised");
       formData.append("num_trucks", mode === "known" ? numTrucks : "0");
 
+      console.log(`${process.env.NEXT_PUBLIC_BACKEND_URL}/routes`);
+
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_BACKEND_URL}/routes`,
         {
@@ -43,12 +66,10 @@ export default function OrdersPage() {
         throw new Error("Failed to generate routes");
       }
 
-      const blob = await response.blob();
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setRoutesImage(reader.result as string);
-      };
-      reader.readAsDataURL(blob);
+      const data = await response.json();
+      console.log(data);
+      setRoutesImage(`${process.env.NEXT_PUBLIC_BACKEND_URL}${data.plot}`);
+      setSummary(data.report);
     } catch (err) {
       setError(
         err instanceof Error ? err.message : "Failed to generate routes"
@@ -158,6 +179,84 @@ export default function OrdersPage() {
                 />
               </div>
             )}
+          </div>
+        )}
+
+        {summary && (
+          <div className="mt-8 space-y-6">
+            <h2 className="text-xl font-semibold text-gray-900">
+              {summary.title}
+            </h2>
+
+            <div className="space-y-8">
+              {summary.routes.map((route) => (
+                <div
+                  key={route.route_number}
+                  className="bg-white rounded-lg shadow p-6 space-y-4"
+                >
+                  <div className="flex justify-between items-start">
+                    <h3 className="text-lg font-medium text-gray-900">
+                      Route #{route.route_number}
+                    </h3>
+                    <div className="text-right">
+                      <p className="text-sm text-gray-600">
+                        Starting from:{" "}
+                        <span className="font-medium">
+                          {route.starting_point}
+                        </span>
+                      </p>
+                      <p className="text-sm text-gray-600">
+                        Total Distance:{" "}
+                        <span className="font-medium">
+                          {route.total_distance.toFixed(3)} units
+                        </span>
+                      </p>
+                      {route.surcharge_total > 0 && (
+                        <p className="text-sm text-red-600">
+                          Total Surcharge:{" "}
+                          <span className="font-medium">
+                            ${route.surcharge_total.toFixed(2)}
+                          </span>
+                        </p>
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <h4 className="text-sm font-medium text-gray-700">
+                      Stops:
+                    </h4>
+                    <div className="divide-y divide-gray-100">
+                      {route.stops.map((stop) => (
+                        <div
+                          key={stop.stop_number}
+                          className="py-2 flex justify-between items-center"
+                        >
+                          <div className="flex items-center space-x-2">
+                            <span className="text-sm text-gray-500">
+                              {stop.stop_number}.
+                            </span>
+                            <span className="text-sm text-gray-900">
+                              {stop.name}
+                            </span>
+                          </div>
+                          {stop.has_detour && (
+                            <div className="flex items-center space-x-2">
+                              <span className="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded">
+                                Detour
+                              </span>
+                              <span className="text-sm text-red-600">
+                                +${stop.surcharge.toFixed(2)}
+                              </span>
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         )}
       </div>

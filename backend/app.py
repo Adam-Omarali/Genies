@@ -63,16 +63,9 @@ async def upload_image(
 @app.post("/api/routes")
 async def get_routes(mode: str = Form(...), num_trucks: int = Form(...)):
     print(f"Generating routes for {mode} with {num_trucks} trucks")
-    image_bytes = logistics.plot_routes_and_save(mode, num_trucks)
-    return Response(
-        content=image_bytes,
-        media_type="image/png",
-        headers={
-            "Cache-Control": "no-store, no-cache, must-revalidate, max-age=0",
-            "Pragma": "no-cache",
-            "Expires": "0"
-        }
-    )
+    data = logistics.return_routes(mode == "supervised", num_trucks)
+    return JSONResponse(content={"plot": data["plot"], "report": data["report"]})
+
 
 @app.get("/api/delete")
 async def delete_trajelon():
