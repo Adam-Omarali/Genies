@@ -34,6 +34,12 @@ export default function Navbar() {
             >
               Orders
             </Link>
+            <Link
+              href="/logistics/upload"
+              className="text-black hover:text-gray-600"
+            >
+              Admin
+            </Link>
           </div>
 
           {/* Right Icons */}
