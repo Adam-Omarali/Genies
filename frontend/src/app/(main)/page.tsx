@@ -98,7 +98,7 @@ export default function Home() {
             author={book.author}
             price={book.price}
             discount={book.discount * 100}
-            imageUrl={`${process.env.NEXT_PUBLIC_BACKEND_URL}${book.img}`}
+            imageUrl={`${process.env.NEXT_PUBLIC_BACKEND_URL}/${book.img}`}
             damage={book["damage-level"]}
           />
         ))}

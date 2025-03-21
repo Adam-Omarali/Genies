@@ -52,8 +52,6 @@ export default function OrdersPage() {
       formData.append("mode", mode === "known" ? "supervised" : "unsupervised");
       formData.append("num_trucks", mode === "known" ? numTrucks : "0");
 
-      console.log(`${process.env.NEXT_PUBLIC_BACKEND_URL}/routes`);
-
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_BACKEND_URL}/routes`,
         {
@@ -67,8 +65,7 @@ export default function OrdersPage() {
       }
 
       const data = await response.json();
-      console.log(data);
-      setRoutesImage(`${process.env.NEXT_PUBLIC_BACKEND_URL}${data.plot}`);
+      setRoutesImage(`${process.env.NEXT_PUBLIC_BACKEND_URL}/${data.plot}`);
       setSummary(data.report);
     } catch (err) {
       setError(
