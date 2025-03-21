@@ -1,5 +1,6 @@
 import type { NextConfig } from "next";
 
+console.log(process.env.NEXT_PUBLIC_BACKEND_URL?.split("//")[1].split(":")[0]);
 
 const nextConfig: NextConfig = {
   images: {
