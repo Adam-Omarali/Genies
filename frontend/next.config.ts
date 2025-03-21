@@ -7,7 +7,7 @@ const nextConfig: NextConfig = {
       {
         protocol: 'http',
         hostname: process.env.NEXT_PUBLIC_BACKEND_URL?.split("//")[1].split(":")[0] ?? 'localhost',
-        port: process.env.NEXT_PUBLIC_BACKEND_URL?.split(':')[2].split('/')[0] ?? '8000',
+        port: process.env.NEXT_PUBLIC_BACKEND_PORT,
         pathname: '/static/**',
         search: '',
       },
