@@ -101,7 +101,7 @@ export default function BookPage({ params }: BookPageProps) {
           <div className="w-full md:w-1/2 space-y-4">
             <div className="aspect-[3/4] relative rounded-lg overflow-hidden">
               <Image
-                src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/${book.img}`}
+                src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${book.img}`}
                 alt={book.name}
                 fill
                 className="object-cover"

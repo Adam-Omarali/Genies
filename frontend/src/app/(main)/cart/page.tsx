@@ -43,7 +43,7 @@ export default function CartPage() {
               {/* Book Image */}
               <div className="w-24 h-32 relative flex-shrink-0">
                 <Image
-                  src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/${item.img}`}
+                  src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${item.img}`}
                   alt={item.name}
                   fill
                   className="object-cover rounded"

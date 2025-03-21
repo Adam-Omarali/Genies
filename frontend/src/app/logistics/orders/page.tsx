@@ -65,7 +65,7 @@ export default function OrdersPage() {
       }
 
       const data = await response.json();
-      setRoutesImage(`${process.env.NEXT_PUBLIC_BACKEND_URL}/${data.plot}`);
+      setRoutesImage(`${process.env.NEXT_PUBLIC_BACKEND_URL}${data.plot}`);
       setSummary(data.report);
     } catch (err) {
       setError(
