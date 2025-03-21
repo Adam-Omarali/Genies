@@ -34,7 +34,7 @@ export default function BookCard({
           <p className="text-gray-600 mb-4">{author}</p>
           <div className="flex justify-between items-center">
             <div className="flex items-center gap-2">
-              <span className="text-lg text-gray-900">${price}</span>
+              <span className="text-lg text-gray-900">${price.toFixed(2)}</span>
             </div>
             <div className="text-sm bg-red-600 text-white px-2 py-1 rounded">
               {discount.toFixed(0)}% OFF

@@ -96,7 +96,7 @@ export default function Home() {
             key={book.name}
             title={book.name}
             author={book.author}
-            price={book.price}
+            price={parseFloat(book.price.toFixed(2))}
             discount={book.discount * 100}
             imageUrl={`${process.env.NEXT_PUBLIC_BACKEND_URL}${book.img}`}
             damage={book["damage-level"]}
